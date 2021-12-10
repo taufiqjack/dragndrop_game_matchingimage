@@ -1,7 +1,5 @@
-import 'package:drag_and_drop_lists/drag_and_drop_item.dart';
 import 'package:drag_and_drop_lists/drag_and_drop_lists.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ListPic extends StatefulWidget {
   const ListPic({Key? key}) : super(key: key);

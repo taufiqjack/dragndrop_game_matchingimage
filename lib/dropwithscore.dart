@@ -53,38 +53,8 @@ class _DropWithScoreState extends State<DropWithScore> {
           'assets/images/cenderawasih.jpg',
         ),
       ),
-
-      // Image.asset(
-      //   'assets/images/bird1.jpg',
-      // ),
-      // Image.asset(
-      //   'assets/images/bird2.jpg',
-      // ),
-      // Image.asset(
-      //   'assets/images/bird3.jpg',
-      // ),
-      // Image.asset(
-      //   'assets/images/bird4.jpg',
-      // )
     ];
     item2 = List<ItemModel>.from(items!);
-    // item2 = const [
-    // Text(
-    //   'Burung 1',
-    // ),
-    // Text(
-    //   'Burung 2',
-    // ),
-    // Text(
-    //   'Burung 3',
-    // ),
-    // Text(
-    //   'Burung 3',
-    // ),
-    // Text(
-    //   'Burung 4',
-    // ),
-    // ];
     items!.shuffle();
     item2!.shuffle();
   }
@@ -101,11 +71,17 @@ class _DropWithScoreState extends State<DropWithScore> {
         child: Column(
           children: [
             Text.rich(TextSpan(children: [
-              const TextSpan(text: 'Score'),
+              const TextSpan(
+                text: 'Score',
+                style: TextStyle(
+                  fontSize: 16,
+                ),
+              ),
               TextSpan(
                   text: ' $score',
                   style: const TextStyle(
                     color: Colors.pink,
+                    fontSize: 16,
                   )),
             ])),
             if (!gameOver!)
@@ -134,22 +110,6 @@ class _DropWithScoreState extends State<DropWithScore> {
                           height: 70,
                           width: 70,
                         ),
-
-                        // childWhenDragging: Icon(
-                        //   item.icon,
-                        //   color: Colors.grey,
-                        //   size: 50,
-                        // ),
-                        // feedback: Icon(
-                        //   item.icon,
-                        //   color: Colors.red,
-                        //   size: 50,
-                        // ),
-                        // child: Icon(
-                        //   item.icon,
-                        //   color: Colors.red,
-                        //   size: 50,
-                        // ),
                       ),
                     );
                   }).toList()),
@@ -162,12 +122,17 @@ class _DropWithScoreState extends State<DropWithScore> {
                               setState(() {
                                 items!.remove(receivedItem);
                                 item2!.remove(item);
-                                score = 10;
-                                item.accepting = false;
+                                // items!.removeAt(item);
+                                score = score! + 10;
+                                item.accepting = true;
                               });
                             } else {
                               setState(() {
-                                score = 5;
+                                if (score! <= 0) {
+                                  score = 0;
+                                } else {
+                                  score = score! - 5;
+                                }
                                 item.accepting = false;
                               });
                             }

@@ -1,5 +1,10 @@
 import 'package:dragndrop/dropwithscore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'core/viewmodel/data.dart';
+import 'ui/resources/constant.dart';
+import 'ui/view/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +30,20 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home: const DropWithScore());
+        // routes: <String, WidgetBuilder>{
+        //   Constants.HOME_SCREEN: (BuildContext context) =>
+        //       ChangeNotifierProvider(
+        //         create: (context) => Data(),
+        //         child: const HomeScreen(),
+        //       )
+        // },
+        // initialRoute: Constants.HOME_SCREEN,
+        home: const DropWithScore()
+        // home: ChangeNotifierProvider(
+        //   create: (context) => Data(),
+        //   child: const HomeScreen(),
+        // ),
+        );
   }
 }
 
