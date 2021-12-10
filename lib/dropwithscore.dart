@@ -220,6 +220,19 @@ class _DropWithScoreState extends State<DropWithScore> {
                 ),
               ),
             ),
+            Align(
+              alignment: Alignment.center,
+              child: ElevatedButton(
+                onPressed: null,
+                style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all(Colors.greenAccent.shade700)),
+                child: const Text(
+                  'Berikutnya',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
           ],
         ),
       ),
