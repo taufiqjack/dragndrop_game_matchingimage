@@ -1,10 +1,6 @@
 import 'package:dragndrop/dropwithscore.dart';
+import 'package:dragndrop/ui/view/listdragndrop.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import 'core/viewmodel/data.dart';
-import 'ui/resources/constant.dart';
-import 'ui/view/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,7 +34,7 @@ class MyApp extends StatelessWidget {
         //       )
         // },
         // initialRoute: Constants.HOME_SCREEN,
-        home: const DropWithScore()
+        home: ListDragDrop()
         // home: ChangeNotifierProvider(
         //   create: (context) => Data(),
         //   child: const HomeScreen(),

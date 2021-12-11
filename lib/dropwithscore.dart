@@ -89,7 +89,7 @@ class _DropWithScoreState extends State<DropWithScore> {
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(width: 2, color: Colors.grey.shade300)),
               child: Padding(
-                padding: EdgeInsets.only(right: 10, left: 10, top: 10),
+                padding: const EdgeInsets.only(right: 10, left: 10, top: 10),
                 child: Column(
                   children: [
                     // Text.rich(TextSpan(children: [
