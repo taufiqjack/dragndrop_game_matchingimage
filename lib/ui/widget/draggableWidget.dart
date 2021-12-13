@@ -22,6 +22,12 @@ class DraggableWidget extends StatelessWidget {
   Widget buildImage() => SizedBox(
         height: size,
         width: size,
-        child: Image.asset(bird.imgAsset),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(5),
+          child: Image.asset(
+            bird.imgAsset,
+            fit: BoxFit.fill,
+          ),
+        ),
       );
 }

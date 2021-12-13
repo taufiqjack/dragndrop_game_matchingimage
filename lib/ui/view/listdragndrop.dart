@@ -137,10 +137,12 @@ class _ListDragDropState extends State<ListDragDrop> {
         builder: (context, cd, rj) => Column(
           children: [
             ...birds
-                .map((bird) => SizedBox(
-                    height: 100,
-                    width: 100,
-                    child: DraggableWidget(bird: bird)))
+                .map((bird) => Padding(
+                    padding: const EdgeInsets.only(top: 25),
+                    child: SizedBox(
+                        height: 70,
+                        width: 100,
+                        child: DraggableWidget(bird: bird))))
                 .toList()
               ..shuffle()
           ],
@@ -170,7 +172,7 @@ class _ListDragDropState extends State<ListDragDrop> {
               borderRadius: BorderRadius.circular(5),
               color: Colors.grey.shade500,
             ),
-            height: 75,
+            height: 70,
             width: 100,
             child: DragTarget<Birds>(
               builder: (context, cd, rj) => Stack(
