@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:dotted_border/dotted_border.dart';
 import 'package:dragndrop/ui/data/data.dart';
 import 'package:dragndrop/ui/data/string.dart';
@@ -7,7 +5,7 @@ import 'package:dragndrop/ui/widget/draggableWidget.dart';
 import 'package:flutter/material.dart';
 
 class ListDragDrop extends StatefulWidget {
-  ListDragDrop({Key? key}) : super(key: key);
+  const ListDragDrop({Key? key}) : super(key: key);
 
   @override
   _ListDragDropState createState() => _ListDragDropState();
@@ -143,7 +141,8 @@ class _ListDragDropState extends State<ListDragDrop> {
                     height: 100,
                     width: 100,
                     child: DraggableWidget(bird: bird)))
-                .toList(),
+                .toList()
+              ..shuffle()
           ],
         ),
         onWillAccept: (data) => true,
