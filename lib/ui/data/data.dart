@@ -1,4 +1,4 @@
-enum BirdsName { merpati, pipit, perkutut, cenderawasih, beo }
+enum BirdsName { merpati, pipit, perkutut, cenderawasih, beo, elang }
 
 class Birds {
   final String imgAsset;

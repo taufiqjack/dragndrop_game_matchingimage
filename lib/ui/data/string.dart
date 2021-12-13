@@ -6,5 +6,6 @@ const String MERPATI = 'Merpati';
 const String PIPIT = 'Pipit';
 const String PERKUTUT = 'Perkutut';
 const String CENDERAWASIH = 'Cenderawasih';
-const String BEO_ = 'BEO';
+const String BEO = 'Beo';
+const String ELANG = 'Elang';
 const String DROP_ITEM_HERE = 'DROP ITEM HERE';

@@ -19,6 +19,7 @@ class _ListDragDropState extends State<ListDragDrop> {
   final List<Birds> _perkutut = [];
   final List<Birds> _cenderawasih = [];
   final List<Birds> _beo = [];
+  final List<Birds> _elang = [];
 
   void removeAll(Birds toRemove) {
     all.removeWhere((bird) => bird.imgAsset == toRemove.imgAsset);
@@ -56,94 +57,96 @@ class _ListDragDropState extends State<ListDragDrop> {
       body: Padding(
         padding:
             const EdgeInsets.only(top: 20, bottom: 20, left: 10, right: 10),
-        child: Column(
-          children: [
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Pasangkan gambar dibawah ini:',
-              ),
-            ),
-            Container(
-              height: 500,
-              width: 400,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(width: 2, color: Colors.grey.shade300),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  imgList(
-                    context,
-                    birds: all,
-                    birdsName: BirdsName.values,
-                    onAccept: (data) => setState(() {
-                      removeAll(data);
-                      all.add(data);
-                    }),
-                  ),
-                  Column(
-                    children: [
-                      target(
-                        context,
-                        text: MERPATI,
-                        birds: _merpati,
-                        birdsName: [BirdsName.merpati],
-                        onAccept: (data) => setState(() {
-                          removeAll(data);
-                          _merpati.add(data);
-                        }),
-                      ),
-                      target(
-                        context,
-                        text: PIPIT,
-                        birds: _pipit,
-                        birdsName: [BirdsName.pipit],
-                        onAccept: (data) => setState(() {
-                          removeAll(data);
-                          _pipit.add(data);
-                        }),
-                      ),
-                      target(
-                        context,
-                        text: PERKUTUT,
-                        birds: _perkutut,
-                        birdsName: [BirdsName.perkutut],
-                        onAccept: (data) => setState(() {
-                          removeAll(data);
-                          _perkutut.add(data);
-                        }),
-                      ),
-                      target(
-                        context,
-                        text: CENDERAWASIH,
-                        birds: _cenderawasih,
-                        birdsName: [BirdsName.cenderawasih],
-                        onAccept: (data) => setState(() {
-                          removeAll(data);
-                          _cenderawasih.add(data);
-                        }),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            ElevatedButton(
-              onPressed: null,
-              child: const Text(
-                'Selanjutnya',
-                style: TextStyle(
-                  color: Colors.white,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Pasangkan gambar dibawah ini:',
                 ),
               ),
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                Colors.green,
-              )),
-            ),
-          ],
+              Container(
+                height: 400,
+                width: 400,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(width: 2, color: Colors.grey.shade300),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    imgList(
+                      context,
+                      birds: all,
+                      birdsName: BirdsName.values,
+                      onAccept: (data) => setState(() {
+                        removeAll(data);
+                        all.add(data);
+                      }),
+                    ),
+                    Column(
+                      children: [
+                        target(
+                          context,
+                          text: MERPATI,
+                          birds: _merpati,
+                          birdsName: [BirdsName.merpati],
+                          onAccept: (data) => setState(() {
+                            removeAll(data);
+                            _merpati.add(data);
+                          }),
+                        ),
+                        target(
+                          context,
+                          text: PIPIT,
+                          birds: _pipit,
+                          birdsName: [BirdsName.pipit],
+                          onAccept: (data) => setState(() {
+                            removeAll(data);
+                            _pipit.add(data);
+                          }),
+                        ),
+                        target(
+                          context,
+                          text: PERKUTUT,
+                          birds: _perkutut,
+                          birdsName: [BirdsName.perkutut],
+                          onAccept: (data) => setState(() {
+                            removeAll(data);
+                            _perkutut.add(data);
+                          }),
+                        ),
+                        target(
+                          context,
+                          text: CENDERAWASIH,
+                          birds: _cenderawasih,
+                          birdsName: [BirdsName.cenderawasih],
+                          onAccept: (data) => setState(() {
+                            removeAll(data);
+                            _cenderawasih.add(data);
+                          }),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              ElevatedButton(
+                onPressed: null,
+                child: const Text(
+                  'Selanjutnya',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                  Colors.green,
+                )),
+              ),
+            ],
+          ),
         ),
       ),
     );
