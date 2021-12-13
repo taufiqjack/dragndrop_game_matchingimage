@@ -5,8 +5,9 @@ class DraggableWidget extends StatelessWidget {
   final Birds bird;
 
   const DraggableWidget({
+    Key? key,
     required this.bird,
-  });
+  }) : super(key: key);
 
   static double size = 150;
 
@@ -15,16 +16,12 @@ class DraggableWidget extends StatelessWidget {
         data: bird,
         feedback: buildImage(),
         child: buildImage(),
-        childWhenDragging: Container(height: size),
+        childWhenDragging: Container(),
       );
 
-  Widget buildImage() => Container(
+  Widget buildImage() => SizedBox(
         height: size,
         width: size,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: Colors.white,
-        ),
         child: Image.asset(bird.imgAsset),
       );
 }

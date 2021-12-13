@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:dotted_border/dotted_border.dart';
 import 'package:dragndrop/ui/data/data.dart';
 import 'package:dragndrop/ui/data/string.dart';
 import 'package:dragndrop/ui/widget/draggableWidget.dart';
@@ -31,107 +32,125 @@ class _ListDragDropState extends State<ListDragDrop> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: InkWell(
+          child: const Icon(
+            Icons.arrow_back_sharp,
+            color: Colors.black,
+          ),
+          onTap: () {},
+        ),
         title: const Text(
-          'Drag n Drop',
+          'Matching Images',
+          style: TextStyle(color: Colors.black),
         ),
       ),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              target(
-                context,
-                text: '',
-                birds: all,
-                birdsName: BirdsName.values,
-                onAccept: (data) => setState(() {
-                  removeAll(data);
-                  all.add(data);
-                }),
+      body: Padding(
+        padding:
+            const EdgeInsets.only(top: 20, bottom: 20, left: 10, right: 10),
+        child: Column(
+          children: [
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Pasangkan gambar dibawah ini:',
               ),
-              target(
-                context,
-                text: '',
-                birds: all,
-                birdsName: BirdsName.values,
-                onAccept: (data) => setState(() {
-                  removeAll(data);
-                  all.add(data);
-                }),
+            ),
+            Container(
+              height: 500,
+              width: 400,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(width: 2, color: Colors.grey.shade300),
               ),
-              target(
-                context,
-                text: '',
-                birds: all,
-                birdsName: BirdsName.values,
-                onAccept: (data) => setState(() {
-                  removeAll(data);
-                  all.add(data);
-                }),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  fromList(
+                    context,
+                    birds: all,
+                    birdsName: BirdsName.values,
+                    onAccept: (data) => setState(() {
+                      removeAll(data);
+                      all.add(data);
+                    }),
+                  ),
+                  Column(
+                    children: [
+                      target(
+                        context,
+                        text: MERPATI,
+                        birds: merpati,
+                        birdsName: [BirdsName.Merpati],
+                        onAccept: (data) => setState(() {
+                          removeAll(data);
+                          merpati.add(data);
+                        }),
+                      ),
+                      target(
+                        context,
+                        text: PIPIT,
+                        birds: pipit,
+                        birdsName: [BirdsName.Pipit],
+                        onAccept: (data) => setState(() {
+                          removeAll(data);
+                          pipit.add(data);
+                        }),
+                      ),
+                      target(
+                        context,
+                        text: PERKUTUT,
+                        birds: perkutut,
+                        birdsName: [BirdsName.Perkutut],
+                        onAccept: (data) => setState(() {
+                          removeAll(data);
+                          perkutut.add(data);
+                        }),
+                      ),
+                      target(
+                        context,
+                        text: CENDERAWASIH,
+                        birds: cenderawasih,
+                        birdsName: [BirdsName.Cenderawasih],
+                        onAccept: (data) => setState(() {
+                          removeAll(data);
+                          cenderawasih.add(data);
+                        }),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-              target(
-                context,
-                text: '',
-                birds: all,
-                birdsName: BirdsName.values,
-                onAccept: (data) => setState(() {
-                  removeAll(data);
-                  all.add(data);
-                }),
-              )
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              target(
-                context,
-                text: MERPATI,
-                birds: merpati,
-                birdsName: [BirdsName.Merpati],
-                onAccept: (data) => setState(() {
-                  removeAll(data);
-                  merpati.add(data);
-                }),
-              ),
-              target(
-                context,
-                text: PIPIT,
-                birds: pipit,
-                birdsName: [BirdsName.Pipit],
-                onAccept: (data) => setState(() {
-                  removeAll(data);
-                  pipit.add(data);
-                }),
-              ),
-              target(
-                context,
-                text: PERKUTUT,
-                birds: perkutut,
-                birdsName: [BirdsName.Perkutut],
-                onAccept: (data) => setState(() {
-                  removeAll(data);
-                  perkutut.add(data);
-                }),
-              ),
-              target(
-                context,
-                text: CENDERAWASIH,
-                birds: cenderawasih,
-                birdsName: [BirdsName.Cenderawasih],
-                onAccept: (data) => setState(() {
-                  removeAll(data);
-                  cenderawasih.add(data);
-                }),
-              ),
-            ],
-          )
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }
+
+  Widget fromList(
+    BuildContext context, {
+    required List<Birds> birds,
+    required List<BirdsName> birdsName,
+    required DragTargetAccept<Birds> onAccept,
+  }) =>
+      DragTarget<Birds>(
+        builder: (context, cd, rj) => Column(
+          children: [
+            ...birds
+                .map((bird) => SizedBox(
+                    height: 100,
+                    width: 100,
+                    child: DraggableWidget(bird: bird)))
+                .toList(),
+          ],
+        ),
+        onWillAccept: (data) => true,
+        onAccept: (data) {
+          onAccept(data);
+        },
+      );
 
   Widget target(
     BuildContext context, {
@@ -140,32 +159,43 @@ class _ListDragDropState extends State<ListDragDrop> {
     required List<BirdsName> birdsName,
     required DragTargetAccept<Birds> onAccept,
   }) =>
-      Container(
-          height: 100,
-          width: 100,
-          color: Colors.blue,
-          child: DragTarget<Birds>(
-            builder: (context, cd, rj) => Stack(
-              children: [
-                ...birds.map((bird) => DraggableWidget(bird: bird)).toList(),
-                IgnorePointer(
-                  child: Center(
+      Padding(
+        padding: const EdgeInsetsDirectional.only(top: 20),
+        child: DottedBorder(
+          borderType: BorderType.RRect,
+          strokeWidth: 2,
+          radius: const Radius.circular(5),
+          color: Colors.grey.shade400,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              color: Colors.grey.shade500,
+            ),
+            height: 75,
+            width: 100,
+            child: DragTarget<Birds>(
+              builder: (context, cd, rj) => Stack(
+                children: [
+                  Center(
                     child: buildText(text!),
                   ),
-                ),
-              ],
+                  ...birds.map((bird) => DraggableWidget(bird: bird)).toList(),
+                ],
+              ),
+              onWillAccept: (data) => true,
+              onAccept: (data) {
+                onAccept(data);
+              },
             ),
-            onWillAccept: (data) => true,
-            onAccept: (data) {
-              onAccept(data);
-            },
-          ));
+          ),
+        ),
+      );
 
   Widget buildText(String text) => Text(
         text,
         style: const TextStyle(
           color: Colors.white,
-          fontSize: 20,
+          fontSize: 14,
           fontWeight: FontWeight.bold,
         ),
         textAlign: TextAlign.center,
