@@ -1,4 +1,4 @@
-enum BirdsName { Merpati, Pipit, Perkutut, Cenderawasih }
+enum BirdsName { merpati, pipit, perkutut, cenderawasih, beo }
 
 class Birds {
   final String imgAsset;
@@ -12,19 +12,19 @@ class Birds {
 
 final allBirds = [
   Birds(
-    name: BirdsName.Merpati,
+    name: BirdsName.merpati,
     imgAsset: 'assets/images/merpati.jpg',
   ),
   Birds(
-    name: BirdsName.Pipit,
+    name: BirdsName.merpati,
     imgAsset: 'assets/images/pipit.jpg',
   ),
   Birds(
-    name: BirdsName.Perkutut,
+    name: BirdsName.merpati,
     imgAsset: 'assets/images/perkutut.jpg',
   ),
   Birds(
-    name: BirdsName.Cenderawasih,
+    name: BirdsName.merpati,
     imgAsset: 'assets/images/cenderawasih.jpg',
   ),
 ];

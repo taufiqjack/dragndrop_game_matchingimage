@@ -1,8 +1,9 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:dragndrop/ui/data/data.dart';
 import 'package:dragndrop/ui/data/string.dart';
-import 'package:dragndrop/ui/widget/draggableWidget.dart';
+import 'package:dragndrop/ui/widget/draggable_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ListDragDrop extends StatefulWidget {
   const ListDragDrop({Key? key}) : super(key: key);
@@ -13,21 +14,29 @@ class ListDragDrop extends StatefulWidget {
 
 class _ListDragDropState extends State<ListDragDrop> {
   final List<Birds> all = allBirds;
-  final List<Birds> merpati = [];
-  final List<Birds> pipit = [];
-  final List<Birds> perkutut = [];
-  final List<Birds> cenderawasih = [];
+  final List<Birds> _merpati = [];
+  final List<Birds> _pipit = [];
+  final List<Birds> _perkutut = [];
+  final List<Birds> _cenderawasih = [];
+  final List<Birds> _beo = [];
 
   void removeAll(Birds toRemove) {
     all.removeWhere((bird) => bird.imgAsset == toRemove.imgAsset);
-    merpati.removeWhere((bird) => bird.imgAsset == toRemove.imgAsset);
-    pipit.removeWhere((bird) => bird.imgAsset == toRemove.imgAsset);
-    perkutut.removeWhere((bird) => bird.imgAsset == toRemove.imgAsset);
-    cenderawasih.removeWhere((bird) => bird.imgAsset == toRemove.imgAsset);
+    _merpati.removeWhere((bird) => bird.imgAsset == toRemove.imgAsset);
+    _pipit.removeWhere((bird) => bird.imgAsset == toRemove.imgAsset);
+    _perkutut.removeWhere((bird) => bird.imgAsset == toRemove.imgAsset);
+    _cenderawasih.removeWhere((bird) => bird.imgAsset == toRemove.imgAsset);
   }
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.black,
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarIconBrightness: Brightness.light,
+    ));
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -65,7 +74,7 @@ class _ListDragDropState extends State<ListDragDrop> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  fromList(
+                  imgList(
                     context,
                     birds: all,
                     birdsName: BirdsName.values,
@@ -79,41 +88,41 @@ class _ListDragDropState extends State<ListDragDrop> {
                       target(
                         context,
                         text: MERPATI,
-                        birds: merpati,
-                        birdsName: [BirdsName.Merpati],
+                        birds: _merpati,
+                        birdsName: [BirdsName.merpati],
                         onAccept: (data) => setState(() {
                           removeAll(data);
-                          merpati.add(data);
+                          _merpati.add(data);
                         }),
                       ),
                       target(
                         context,
                         text: PIPIT,
-                        birds: pipit,
-                        birdsName: [BirdsName.Pipit],
+                        birds: _pipit,
+                        birdsName: [BirdsName.pipit],
                         onAccept: (data) => setState(() {
                           removeAll(data);
-                          pipit.add(data);
+                          _pipit.add(data);
                         }),
                       ),
                       target(
                         context,
                         text: PERKUTUT,
-                        birds: perkutut,
-                        birdsName: [BirdsName.Perkutut],
+                        birds: _perkutut,
+                        birdsName: [BirdsName.perkutut],
                         onAccept: (data) => setState(() {
                           removeAll(data);
-                          perkutut.add(data);
+                          _perkutut.add(data);
                         }),
                       ),
                       target(
                         context,
                         text: CENDERAWASIH,
-                        birds: cenderawasih,
-                        birdsName: [BirdsName.Cenderawasih],
+                        birds: _cenderawasih,
+                        birdsName: [BirdsName.cenderawasih],
                         onAccept: (data) => setState(() {
                           removeAll(data);
-                          cenderawasih.add(data);
+                          _cenderawasih.add(data);
                         }),
                       ),
                     ],
@@ -121,13 +130,26 @@ class _ListDragDropState extends State<ListDragDrop> {
                 ],
               ),
             ),
+            ElevatedButton(
+              onPressed: null,
+              child: const Text(
+                'Selanjutnya',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                Colors.green,
+              )),
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget fromList(
+  Widget imgList(
     BuildContext context, {
     required List<Birds> birds,
     required List<BirdsName> birdsName,

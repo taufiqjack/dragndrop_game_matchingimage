@@ -9,7 +9,7 @@ class DraggableWidget extends StatelessWidget {
     required this.bird,
   }) : super(key: key);
 
-  static double size = 150;
+  static double size = 100;
 
   @override
   Widget build(BuildContext context) => Draggable<Birds>(
