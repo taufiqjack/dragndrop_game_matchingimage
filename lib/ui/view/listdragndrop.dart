@@ -47,7 +47,9 @@ class _ListDragDropState extends State<ListDragDrop> {
             Icons.arrow_back_sharp,
             color: Colors.black,
           ),
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).pop();
+          },
         ),
         title: const Text(
           'Matching Images',
@@ -226,4 +228,11 @@ class _ListDragDropState extends State<ListDragDrop> {
         ),
         textAlign: TextAlign.center,
       );
+
+  _listReorder(int oldListIndex, int newList) {
+    setState(() {
+      var movedList = allBirds.removeAt(oldListIndex);
+      allBirds.insert(newList, movedList);
+    });
+  }
 }

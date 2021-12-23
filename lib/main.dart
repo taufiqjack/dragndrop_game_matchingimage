@@ -1,3 +1,4 @@
+import 'package:dragndrop/listpic.dart';
 import 'package:dragndrop/ui/view/listdragndrop.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
       //       )
       // },
       // initialRoute: Constants.HOME_SCREEN,
-      home: const ListDragDrop(),
+      home: const ListPic(),
       // home: ChangeNotifierProvider(
       //   create: (context) => Data(),
       //   child: const HomeScreen(),
